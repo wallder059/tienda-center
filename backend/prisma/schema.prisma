@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Roles disponibles en el sistema
+enum Rol {
+  ADMIN
+  USUARIO
+}
+
+/// Usuario del sistema (administradores)
+model Usuario {
+  id        String   @id @default(uuid())
+  nombre    String
+  email     String   @unique
+  password  String
+  rol       Rol      @default(ADMIN)
+  createdAt DateTime @default(now())
+
+  @@map("usuarios")
+}
+
+/// Categoría de productos (GPU, CPU, RAM, etc.)
+model Categoria {
+  id        String     @id @default(uuid())
+  nombre    String     @unique
+  productos Producto[]
+
+  @@map("categorias")
+}
+
+/// Marca de productos (ASUS, MSI, NVIDIA, etc.)
+model Marca {
+  id        String     @id @default(uuid())
+  nombre    String     @unique
+  productos Producto[]
+
+  @@map("marcas")
+}
+
+/// Producto de la tienda
+model Producto {
+  id          String    @id @default(uuid())
+  nombre      String
+  descripcion String
+  precio      Decimal   @db.Decimal(10, 2)
+  stock       Int       @default(0)
+  imagen      String
+  categoriaId String
+  marcaId     String
+  activo      Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  categoria   Categoria @relation(fields: [categoriaId], references: [id], onDelete: Restrict)
+  marca       Marca     @relation(fields: [marcaId], references: [id], onDelete: Restrict)
+
+  @@index([categoriaId])
+  @@index([marcaId])
+  @@index([activo])
+  @@index([createdAt])
+  @@map("productos")
+}

@@ -1,0 +1,6 @@
+Coloca aquí la foto principal del banner:
+
+- hero-pc.jpg         → PC gaming (recomendado 1400×900 px)
+- hero-secondary.jpg  → foto secundaria del hero (opcional)
+
+Las fotos de categorías van en la subcarpeta /categorias/

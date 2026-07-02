@@ -1,0 +1,15 @@
+Coloca aquí las fotos de cada categoría con estos nombres exactos:
+
+- procesador.jpg      → Procesador
+- ram.jpg             → RAM
+- almacenamiento.jpg  → Almacenamiento
+- placa-base.jpg      → Placa Base
+- cpu-completa.jpg    → CPU Completa
+- default.jpg         → imagen por defecto si falta alguna
+
+También en la carpeta padre (/public/images/):
+
+- hero-pc.jpg         → foto principal del banner (PC gaming)
+- hero-secondary.jpg  → foto pequeña del hero (opcional)
+
+Formato recomendado: JPG o WEBP, mínimo 600×750 px para categorías.
